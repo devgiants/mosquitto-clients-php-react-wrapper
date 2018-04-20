@@ -1,0 +1,22 @@
+{
+  "name": "devgiants/mosquitto-clients-php-react-wrapper",
+  "description": "ReactPHP wrapper for mosquitto clients (mosquitto_sub and mosquitto_pub)",
+  "type": "Library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Nicolas BONNIOT",
+      "email": "nicolas@devgiants.fr"
+    }
+  ],
+  "require": {
+    "react/event-loop": "^0.4.1",
+    "evenement/evenement": "^2.0",
+    "symfony/config": "^3.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "devgiants\\MosquittoClientsReactWrapper": "src/MosquittoClientsReactWrapper"
+    }
+  }
+}
