@@ -6,17 +6,17 @@
  * Time: 10:57
  */
 
-namespace devgiants\MosquittoClientsReactWrapper\Client;
+namespace Devgiants\MosquittoClientsReactWrapper\Client;
 
-use devgiants\MosquittoClientsReactWrapper\Exception\MosquittoClientsMissingConfigFileException;
-use devgiants\MosquittoClientsReactWrapper\Exception\MosquittoClientsMissingException;
+use Devgiants\MosquittoClientsReactWrapper\Exception\MosquittoClientsMissingConfigFileException;
+use Devgiants\MosquittoClientsReactWrapper\Exception\MosquittoClientsMissingException;
 use Evenement\EventEmitterTrait;
 use React\EventLoop\LoopInterface;
 
 
 /**
  * Class MosquittoClientsReactWrapper
- * @package devgiants\MosquittoClientsReactWrapper\Client
+ * @package Devgiants\MosquittoClientsReactWrapper\Client
  */
 class MosquittoClientsReactWrapper {
 

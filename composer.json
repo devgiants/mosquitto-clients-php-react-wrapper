@@ -16,7 +16,7 @@
   },
   "autoload": {
     "psr-4": {
-      "devgiants\\MosquittoClientsReactWrapper\\": "src/MosquittoClientsReactWrapper"
+      "Devgiants\\MosquittoClientsReactWrapper\\": "src/MosquittoClientsReactWrapper"
     }
   }
 }

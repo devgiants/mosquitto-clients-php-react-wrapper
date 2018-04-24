@@ -5,7 +5,7 @@
  * Date: 20/04/18
  * Time: 11:08
  */
-namespace devgiants\MosquittoClientsReactWrapper\Exception;
+namespace Devgiants\MosquittoClientsReactWrapper\Exception;
 
 class MosquittoClientsMissingConfigFileException extends \Exception {
 
