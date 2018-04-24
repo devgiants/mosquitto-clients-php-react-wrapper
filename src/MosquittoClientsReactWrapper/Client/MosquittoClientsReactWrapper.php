@@ -78,11 +78,10 @@ class MosquittoClientsReactWrapper {
 	 */
 	public function subscribe(string $topic, $callback) {
 		$this->on( $topic, $callback );
-		echo $topic . PHP_EOL;
 
 		$this->loop->addReadStream( popen( "mosquitto_sub -t \"$topic\"", 'r' ), function ($stream) use ($topic, $callback) {
 			$message = fread($stream, 4096);
-			$this->emit($topic, ['message' => $message]);
+			$this->emit($topic, ['message' => trim($message)]);
 		} );
 	}
 
