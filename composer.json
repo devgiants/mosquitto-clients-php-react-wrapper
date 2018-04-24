@@ -1,6 +1,7 @@
 {
   "name": "devgiants/mosquitto-clients-php-react-wrapper",
   "description": "ReactPHP wrapper for mosquitto clients (mosquitto_sub and mosquitto_pub)",
+  "keywords": ["php", "mosquitto", "reactphp", "wrapper"],
   "type": "Library",
   "license": "MIT",
   "authors": [
