@@ -8,10 +8,13 @@
 
 namespace Devgiants\MosquittoClientsReactWrapper\Client;
 
+use Devgiants\MosquittoClientsReactWrapper\Event\Events;
+use Devgiants\MosquittoClientsReactWrapper\Exception\InternetConnectionFailure;
 use Devgiants\MosquittoClientsReactWrapper\Exception\MosquittoClientsMissingConfigFileException;
 use Devgiants\MosquittoClientsReactWrapper\Exception\MosquittoClientsMissingException;
 use Evenement\EventEmitterTrait;
 use React\EventLoop\LoopInterface;
+use React\EventLoop\Timer\TimerInterface;
 
 
 /**
@@ -20,14 +23,29 @@ use React\EventLoop\LoopInterface;
  */
 class MosquittoClientsReactWrapper {
 
+	const MAX_FAIL_ACCEPTED = 10;
+
+	const TIME_BETWEEN_TRIES = 5;
+
 	/**
 	 * @var LoopInterface
 	 */
 	protected $loop;
 
+	/**
+	 * @var boolean
+	 */
+	protected $isConnected;
+
+	/**
+	 * @var TimerInterface
+	 */
+	protected $connectionCheckTimer;
+
 	use EventEmitterTrait;
 
 	/**
+	 * @param LoopInterface $loop
 	 * @return static
 	 * @throws MosquittoClientsMissingConfigFileException
 	 * @throws MosquittoClientsMissingException
@@ -48,7 +66,6 @@ class MosquittoClientsReactWrapper {
 			throw new MosquittoClientsMissingConfigFileException("~/.config/mosquitto_sub file is missing");
 		}
 
-
 		return new static($loop);
 	}
 
@@ -60,6 +77,19 @@ class MosquittoClientsReactWrapper {
 	 */
 	private function __construct(LoopInterface $loop) {
 		$this->loop = $loop;
+
+		// Set loop for checking internet connection
+		$this->connectionCheckTimer = $loop->addPeriodicTimer(static::TIME_BETWEEN_TRIES, function(){
+
+			// Check socket opening on google.fr
+			$this->isConnected = (bool) @fsockopen("www.google.fr", 80, $errNo, $errStr, 5);
+
+			// When connected, cancel timer and emit event
+			if($this->isConnected) {
+				$this->loop->cancelTimer($this->connectionCheckTimer);
+				$this->emit(Events::INTERNET_CONNECTION_AVAILABLE);
+			}
+		});
 	}
 
 

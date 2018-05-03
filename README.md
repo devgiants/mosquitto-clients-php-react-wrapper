@@ -19,3 +19,11 @@ Use [config files setup](https://mosquitto.org/man/mosquitto_pub-1.html), such a
 -P password
 
 ```
+
+## Usage
+
+### Subscription
+
+Use `Events::INTERNET_CONNECTION_AVAILABLE` to be sure internet connection is active
+
+### Publishing
