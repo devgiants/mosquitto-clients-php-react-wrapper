@@ -14,6 +14,8 @@
     "react/event-loop": "^0.5.2",
     "evenement/evenement": "^2.0"
   },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "autoload": {
     "psr-4": {
       "Devgiants\\MosquittoClientsReactWrapper\\": "src/"
